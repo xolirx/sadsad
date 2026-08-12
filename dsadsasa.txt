@@ -1,0 +1,48 @@
+Node Plugins β
+
+Плагины – это дополнительные модули, которые можно активировать на Remnawave Node для дополнительных функций: Torrent Blocker, Ingress Filter, Egress Filter, настройка Connection Drop.
+tip
+
+Плагины для нод доступны начиная с версии Remnawave Panel & Remnawave Node v2.7.0.
+Node Plugins
+Требования
+
+Для корректной работы плагинов в обязательном порядке требуется добавить директиву cap_add: NET_ADMIN в конфигурацию Remnawave Node.
+docker-compose.yml
+
+services:
+    remnanode:
+        container_name: remnanode
+        hostname: remnanode
+        image: remnawave/node:latest
+        network_mode: host
+        restart: always
+        cap_add:
+            - NET_ADMIN
+        ulimits:
+            nofile:
+                soft: 1048576
+                hard: 1048576
+        environment:
+            - NODE_PORT=<NODE_PORT>
+            - SECRET_KEY=<SECRET_KEY>
+
+nftables
+
+Убедитесь, что на хостовой машине доступен nftables. На большинстве современных дистрибутивов он уже установлен по умолчанию.
+Проверка версии nftables
+
+nft --version
+
+Linux-ядро
+
+Требуется версия ядра 5.7 или выше.
+Проверка версии ядра
+
+uname -r
+
+    Примечание: если версия ядра ниже 5.7, плагин работать не будет. Обновите ядро или обратитесь к документации вашего дистрибутива.
+
+danger
+
+Отнеситесь к настройке плагинов с осторожностью, плагины Torrent Blocker, Ingress Filter, Egress Filter будут рабо
