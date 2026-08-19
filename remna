@@ -1,0 +1,2774 @@
+
+Remnawave API v3.2.3
+
+ 3.2.3 
+
+OAS 3.0
+
+Remnawave is a powerful proxy management tool, built on top of Xray-core, with a focus on simplicity and ease of use.
+Resources
+
+    https://t.me/remnawave
+    https://github.com/remnawave
+    https://docs.rw
+
+AGPL-3.0
+Users Controller
+
+Manage users, change their status, reset traffic, etc.
+POST
+/api/users
+Create a new user
+PATCH
+/api/users
+Update a user
+GET
+/api/users
+Get all users using offset-based pagination
+DELETE
+/api/users/{userId}
+Delete user
+GET
+/api/users/{userId}
+Get user by ID
+GET
+/api/users/stream
+Get all users using cursor-based (keyset) pagination with filtering options
+GET
+/api/users/tags
+Get users tags
+GET
+/api/users/{userId}/accessible-nodes
+Get user accessible nodes
+GET
+/api/users/{userId}/subscription-request-history
+Get user subscription request history, recent 24 records
+GET
+/api/users/by-short-uuid/{shortUuid}
+Get user by Short UUID
+GET
+/api/users/by-username/{username}
+Get user by username
+POST
+/api/users/{userId}/actions/revoke
+Revoke user subscription
+POST
+/api/users/{userId}/actions/disable
+Disable user
+POST
+/api/users/{userId}/actions/enable
+Enable user
+POST
+/api/users/{userId}/actions/reset-traffic
+Reset user traffic
+POST
+/api/users/{userId}/actions/extend
+Extend user expiration date
+POST
+/api/users/resolve
+Resolve a user
+Users Bulk Actions Controller
+
+Bulk actions with users.
+POST
+/api/users/bulk/delete-by-status
+Bulk delete users by status
+POST
+/api/users/bulk/delete
+Bulk delete users by User IDs
+POST
+/api/users/bulk/revoke-subscription
+Revoke users subscription by User IDs
+POST
+/api/users/bulk/reset-traffic
+Bulk reset traffic users by User IDs
+POST
+/api/users/bulk/update
+Bulk update users by User IDs
+POST
+/api/users/bulk/update-squads
+Bulk update users internal squads by User IDs
+POST
+/api/users/bulk/extend-expiration-date
+Extend expiration date for specified users by days
+POST
+/api/users/bulk/all/update
+Bulk update all users
+POST
+/api/users/bulk/all/reset-traffic
+Reset user used traffic for all users
+POST
+/api/users/bulk/all/extend-expiration-date
+Extend expiration date for all users by days
+HWID User Devices Controller
+GET
+/api/hwid/devices
+Get HWID devices
+POST
+/api/hwid/devices
+Create a user HWID device
+POST
+/api/hwid/devices/delete
+Delete a user HWID device
+POST
+/api/hwid/devices/delete-all
+Delete all user HWID devices
+GET
+/api/hwid/devices/stats
+Get HWID devices stats
+GET
+/api/hwid/devices/top-users
+Get top users by HWID devices
+GET
+/api/hwid/devices/{userId}
+Get user HWID devices
+[Public] Subscription Controller
+
+Public Subscription Controller. Methods of this controller are not protected with auth. Use it only for public requests.
+GET
+/api/sub/{shortUuid}/info
+Get Subscription Info by Short UUID
+GET
+/api/sub/{shortUuid}
+GET
+/api/sub/{shortUuid}/{clientType}
+[Protected] Subscriptions Controller
+
+Methods of this controller are protected with auth, most of them is returning the same informations as public Subscription Controller.
+GET
+/api/subscriptions
+Get all subscriptions
+GET
+/api/subscriptions/by-username/{username}
+Get subscription by username
+GET
+/api/subscriptions/by-short-uuid/{shortUuid}
+Get subscription by short uuid (protected route)
+GET
+/api/subscriptions/by-id/{userId}
+Get subscription by User ID
+GET
+/api/subscriptions/by-short-uuid/{shortUuid}/raw
+Get Raw Subscription by Short UUID
+GET
+/api/subscriptions/subpage-config/{shortUuid}
+Get Subpage Config by Short UUID
+GET
+/api/subscriptions/connection-keys/{userId}
+Get connection keys (base64 format) by user id
+Nodes Controller
+GET
+/api/nodes/tags
+Get nodes tags
+POST
+/api/nodes
+Create a new node
+GET
+/api/nodes
+Get nodes
+PATCH
+/api/nodes
+Update node
+GET
+/api/nodes/{uuid}
+Get node by UUID
+DELETE
+/api/nodes/{uuid}
+Delete a node
+POST
+/api/nodes/{uuid}/actions/enable
+Enable a node
+POST
+/api/nodes/{uuid}/actions/disable
+Disable a node
+POST
+/api/nodes/{uuid}/actions/restart
+Restart node
+POST
+/api/nodes/{uuid}/actions/reset-traffic
+Reset Node Traffic
+POST
+/api/nodes/actions/restart-all
+Restart all nodes
+POST
+/api/nodes/actions/reorder
+Reorder nodes
+POST
+/api/nodes/bulk-actions/profile-modification
+Modify Inbounds & Profile for many nodes
+POST
+/api/nodes/bulk-actions
+Perform actions for many nodes
+POST
+/api/nodes/bulk-actions/update
+Update many nodes
+Node Plugins Controller
+GET
+/api/node-plugins/torrent-blocker
+Get Torrent Blocker Reports
+GET
+/api/node-plugins/torrent-blocker/stats
+Get Torrent Blocker Reports Stats
+DELETE
+/api/node-plugins/torrent-blocker/truncate
+Truncate Torrent Blocker Reports
+GET
+/api/node-plugins
+Get all Node Plugins
+PATCH
+/api/node-plugins
+Update Node Plugin
+POST
+/api/node-plugins
+Create Node Plugin
+GET
+/api/node-plugins/{uuid}
+Get Node Plugin by uuid
+DELETE
+/api/node-plugins/{uuid}
+Delete Node Plugin
+POST
+/api/node-plugins/actions/reorder
+Reorder Node Plugins
+POST
+/api/node-plugins/actions/clone
+Clone Node Plugin
+POST
+/api/node-plugins/executor
+Execute command on node plugins
+Bandwidth Stats Controller
+GET
+/api/bandwidth-stats/internal-squads/{uuid}/usage
+Get internal squad users traffic usage for a period
+GET
+/api/bandwidth-stats/internal-squads/{squadUuid}/users/{userId}/usage
+Get a single user daily traffic usage on the internal squad nodes for a period
+POST
+/api/bandwidth-stats/nodes/usage
+Get users exceeding a traffic threshold on the given nodes for a period
+GET
+/api/bandwidth-stats/nodes/{uuid}/users
+Get Node Users Usage by Node UUID
+POST
+/api/bandwidth-stats/nodes/users
+Get Nodes Users Usage by Nodes UUIDs
+GET
+/api/bandwidth-stats/users/{userId}
+Get User Usage by Range
+GET
+/api/bandwidth-stats/nodes
+Get Nodes Usage by Range
+Connections Controller
+
+Management of connections by user and node.
+POST
+/api/connections/by-user/{userId}
+Request Connections for User
+GET
+/api/connections/by-user/{jobId}
+Get Connections for User by Job ID
+POST
+/api/connections/drop
+Drop Connections for Users or IPs
+POST
+/api/connections/by-node/{nodeUuid}
+Request Connections for Node
+GET
+/api/connections/by-node/{jobId}
+Get Connections for Node by Job ID
+Config Profiles Controller
+
+Management of Config Profiles.
+GET
+/api/config-profiles
+Get config profiles
+POST
+/api/config-profiles
+Create config profile
+PATCH
+/api/config-profiles
+Update Core Config in specific config profile
+GET
+/api/config-profiles/inbounds
+Get all inbounds from all config profiles
+GET
+/api/config-profiles/{uuid}/inbounds
+Get inbounds by profile uuid
+GET
+/api/config-profiles/{uuid}
+Get config profile by uuid
+DELETE
+/api/config-profiles/{uuid}
+Delete config profile
+GET
+/api/config-profiles/{uuid}/computed-config
+Get computed config profile by uuid
+POST
+/api/config-profiles/actions/reorder
+Reorder config profiles
+Internal Squads Controller
+
+Management of Internal Squads.
+GET
+/api/internal-squads
+Get all internal squads
+POST
+/api/internal-squads
+Create internal squad
+PATCH
+/api/internal-squads
+Update internal squad
+GET
+/api/internal-squads/{uuid}
+Get internal squad by uuid
+DELETE
+/api/internal-squads/{uuid}
+Delete internal squad
+GET
+/api/internal-squads/{uuid}/accessible-nodes
+Get internal squad accessible nodes
+GET
+/api/internal-squads/{uuid}/usage
+Get internal squad users traffic usage for a period
+POST
+/api/internal-squads/{uuid}/bulk-actions/add-users
+Add all users to internal squad
+DELETE
+/api/internal-squads/{uuid}/bulk-actions/remove-users
+Delete users from internal squad
+POST
+/api/internal-squads/actions/reorder
+Reorder internal squads
+POST
+/api/internal-squads/{uuid}/bulk-actions/add-many-users
+Add many users to internal squad
+DELETE
+/api/internal-squads/{uuid}/bulk-actions/remove-many-users
+Delete many users from internal squad
+External Squads Controller
+
+Management of External Squads.
+GET
+/api/external-squads
+Get all external squads
+POST
+/api/external-squads
+Create external squad
+PATCH
+/api/external-squads
+Update external squad
+GET
+/api/external-squads/{uuid}
+Get external squad by uuid
+DELETE
+/api/external-squads/{uuid}
+Delete external squad
+POST
+/api/external-squads/{uuid}/bulk-actions/add-users
+Add all users to external squad
+DELETE
+/api/external-squads/{uuid}/bulk-actions/remove-users
+Delete users from external squad
+POST
+/api/external-squads/actions/reorder
+Reorder external squads
+Hosts Controller
+GET
+/api/hosts/tags
+Get tags of hosts
+POST
+/api/hosts
+Create a new host
+PATCH
+/api/hosts
+Update a host
+GET
+/api/hosts
+Get hosts
+GET
+/api/hosts/{uuid}
+Get a host by UUID
+DELETE
+/api/hosts/{uuid}
+Delete a host by UUID
+POST
+/api/hosts/actions/reorder
+Reorder hosts
+Hosts Bulk Actions Controller
+POST
+/api/hosts/bulk/delete
+Delete hosts by UUIDs
+POST
+/api/hosts/bulk/disable
+Disable hosts by UUIDs
+POST
+/api/hosts/bulk/enable
+Enable hosts by UUIDs
+PATCH
+/api/hosts/bulk/update
+Update many hosts
+Subscription Template Controller
+GET
+/api/subscription-templates
+Get all subscription templates (wihout content)
+PATCH
+/api/subscription-templates
+Update subscription template
+POST
+/api/subscription-templates
+Create subscription template
+GET
+/api/subscription-templates/{uuid}
+Get subscription template by uuid
+DELETE
+/api/subscription-templates/{uuid}
+Delete subscription template
+POST
+/api/subscription-templates/actions/reorder
+Reorder subscription templates
+Subscription Settings Controller
+GET
+/api/subscription-settings
+Get subscription settings
+PATCH
+/api/subscription-settings
+Update subscription settings
+Infra Billing Controller
+GET
+/api/infra-billing/providers
+Get all infra providers
+POST
+/api/infra-billing/providers
+Create infra provider
+PATCH
+/api/infra-billing/providers
+Update infra provider
+GET
+/api/infra-billing/providers/{uuid}
+Get infra provider by uuid
+DELETE
+/api/infra-billing/providers/{uuid}
+Delete infra provider by uuid
+POST
+/api/infra-billing/history
+Create infra billing history
+GET
+/api/infra-billing/history
+Get infra billing history
+DELETE
+/api/infra-billing/history/{uuid}
+Delete infra billing history
+GET
+/api/infra-billing/nodes
+Get infra billing nodes
+PATCH
+/api/infra-billing/nodes
+Update infra billing nodes
+POST
+/api/infra-billing/nodes
+Create infra billing node
+DELETE
+/api/infra-billing/nodes/{uuid}
+Delete infra billing node
+System Controller
+GET
+/api/system/metadata
+Get Remnawave Information
+GET
+/api/system/configuration
+Get Remnawave Configuration
+GET
+/api/system/stats
+Get Stats
+GET
+/api/system/stats/bandwidth
+Get Bandwidth Stats
+GET
+/api/system/stats/nodes
+Get Nodes Statistics
+GET
+/api/system/health
+Get Remnawave Health
+GET
+/api/system/nodes/metrics
+Get Nodes Metrics
+GET
+/api/system/tools/x25519/generate
+Generate 30 X25519 keypairs
+POST
+/api/system/testers/srr-matcher
+Test SRR Matcher
+GET
+/api/system/stats/recap
+Get Recap
+GET
+/api/system/stats/digest
+Get Stats Digest
+GET
+/api/system/stats/http
+Get HTTP Stats
+Keygen Controller
+
+Generation of SECRET_KEY for Remnawave Node.
+GET
+/api/keygen
+Get SECRET_KEY for Remnawave Node
+Subscription Request History Controller
+GET
+/api/subscription-request-history
+Get all subscription request history
+GET
+/api/subscription-request-history/stats
+Get subscription request history stats
+Snippets Controller
+GET
+/api/snippets
+Get snippets
+DELETE
+/api/snippets
+Delete snippet
+POST
+/api/snippets
+Create snippet
+PATCH
+/api/snippets
+Update snippet
+POST
+/api/snippets/actions/sync
+Sync snippet to affected config profiles
+Remnawave Settings Controller
+GET
+/api/remnawave-settings
+Get Remnawave settings
+PATCH
+/api/remnawave-settings
+Update Remnawave settings
+Subscription Page Configs Controller
+GET
+/api/subscription-page-configs
+Get all subscription page configs
+PATCH
+/api/subscription-page-configs
+Update subscription page config
+POST
+/api/subscription-page-configs
+Create subscription page config
+GET
+/api/subscription-page-configs/{uuid}
+Get subscription page config by uuid
+DELETE
+/api/subscription-page-configs/{uuid}
+Delete subscription page config
+POST
+/api/subscription-page-configs/actions/reorder
+Reorder subscription page configs
+POST
+/api/subscription-page-configs/actions/clone
+Clone subscription page config
+Metadata Controller
+
+Manage arbitrary metadata for Users and Nodes.
+GET
+/api/metadata/user/{userId}
+Get user metadata
+PUT
+/api/metadata/user/{userId}
+Update or create User Metadata
+GET
+/api/metadata/node/{uuid}
+Get node metadata
+PUT
+/api/metadata/node/{uuid}
+Update or create Node Metadata
+Auth Controller
+
+Used to authenticate admin users.
+POST
+/api/auth/login
+Login as superadmin
+POST
+/api/auth/register
+Register as superadmin
+GET
+/api/auth/status
+Get the status of the authentication
+POST
+/api/auth/oauth2/authorize
+Initiate OAuth2 authorization
+POST
+/api/auth/oauth2/callback
+Callback from OAuth2
+GET
+/api/auth/passkey/authentication/options
+Get the authentication options for passkey
+POST
+/api/auth/passkey/authentication/verify
+Verify the authentication for passkey
+Passkeys Controller
+
+Management of Passkeys.
+GET
+/api/passkeys/registration/options
+Get registration options for passkey
+POST
+/api/passkeys/registration/verify
+Verify registration for passkey
+GET
+/api/passkeys
+Get passkeys
+DELETE
+/api/passkeys
+Delete a passkey by ID
+PATCH
+/api/passkeys
+Update passkey
+API Tokens Controller
+
+Manage API tokens to use in your code. This controller can't be used with API token, only with Admin JWT token
+POST
+/api/tokens
+Create a new API token
+GET
+/api/tokens
+Get all API tokens
+DELETE
+/api/tokens/{uuid}
+Delete API token
+GET
+/api/tokens/scopes
+Get available API token scopes
+Schemas
+GetRemnawaveSettingsResponseDto
+UpdateRemnawaveSettingsBodyDto
+UpdateRemnawaveSettingsResponseDto
+GetPasskeyRegistrationOptionsResponseDto
+VerifyPasskeyRegistrationBodyDto
+VerifyPasskeyRegistrationResponseDto
+GetPasskeysResponseDto
+DeletePasskeyBodyDto
+UpdatePasskeyBodyDto
+UpdatePasskeyResponseDto
+LoginBodyDto
+LoginResponseDto
+RegisterBodyDto
+RegisterResponseDto
+GetStatusResponseDto
+OAuth2AuthorizeBodyDto
+OAuth2AuthorizeResponseDto
+OAuth2CallbackBodyDto
+OAuth2CallbackResponseDto
+GetPasskeyAuthenticationOptionsResponseDto
+VerifyPasskeyAuthenticationBodyDto
+VerifyPasskeyAuthenticationResponseDto
+GetSubpageConfigsResponseDto
+GetSubpageConfigResponseDto
+UpdateSubpageConfigBodyDto
+UpdateSubpageConfigResponseDto
+CreateSubpageConfigBodyDto
+CreateSubpageConfigResponseDto
+ReorderSubpageConfigsBodyDto
+ReorderSubpageConfigsResponseDto
+CloneSubpageConfigBodyDto
+CloneSubpageConfigResponseDto
+CreateUserBodyDto
+UserResponseDto
+UpdateUserBodyDto
+GetUsersResponseDto
+GetUsersStreamResponseDto
+GetUsersTagsResponseDto
+GetUserAccessibleNodesResponseDto
+GetUserSubscriptionRequestHistoryResponseDto
+RevokeUserSubscriptionBodyDto
+ExtendUserBodyDto
+ResolveUserBodyDto
+ResolveUserResponseDto
+BulkDeleteUsersByStatusBodyDto
+BulkDeleteUsersBodyDto
+BulkRevokeUsersSubscriptionBodyDto
+BulkResetTrafficUsersBodyDto
+BulkUpdateUsersBodyDto
+BulkUpdateUsersSquadsBodyDto
+BulkExtendExpirationDateBodyDto
+BulkAllUpdateUsersBodyDto
+BulkAllExtendExpirationDateBodyDto
+GetSubscriptionInfoResponseDto
+GetSubscriptionsResponseDto
+GetSubscriptionByUsernameResponseDto
+GetSubscriptionByShortUuidProtectedResponseDto
+GetSubscriptionByIdResponseDto
+GetRawSubscriptionByShortUuidResponseDto
+GetSubpageConfigByShortUuidBodyDto
+GetSubpageConfigByShortUuidResponseDto
+GetConnectionKeysByUserIdResponseDto
+GetTemplatesResponseDto
+GetTemplateResponseDto
+UpdateTemplateBodyDto
+UpdateTemplateResponseDto
+CreateSubscriptionTemplateBodyDto
+CreateSubscriptionTemplateResponseDto
+ReorderSubscriptionTemplatesBodyDto
+ReorderSubscriptionTemplatesResponseDto
+CreateApiTokenBodyDto
+CreateApiTokenResponseDto
+GetApiTokenScopesResponseDto
+GetApiTokensResponseDto
+GetConfigProfilesResponseDto
+GetAllInboundsResponseDto
+GetInboundsByProfileUuidResponseDto
+GetConfigProfileByUuidResponseDto
+GetComputedConfigProfileByUuidResponseDto
+CreateConfigProfileBodyDto
+CreateConfigProfileResponseDto
+UpdateConfigProfileBodyDto
+UpdateConfigProfileResponseDto
+ReorderConfigProfilesBodyDto
+ReorderConfigProfilesResponseDto
+GetSnippetsResponseDto
+SyncSnippetBodyDto
+DeleteSnippetBodyDto
+CreateSnippetBodyDto
+CreateSnippetResponseDto
+UpdateSnippetBodyDto
+UpdateSnippetResponseDto
+GetInternalSquadsResponseDto
+GetInternalSquadResponseDto
+CreateInternalSquadBodyDto
+CreateInternalSquadResponseDto
+GetInternalSquadAccessibleNodesResponseDto
+GetInternalSquadUsageResponseDto
+UpdateInternalSquadBodyDto
+UpdateInternalSquadResponseDto
+ReorderInternalSquadsBodyDto
+ReorderInternalSquadsResponseDto
+AddManyUsersToInternalSquadBodyDto
+DeleteManyUsersFromInternalSquadBodyDto
+GetInternalSquadUserUsageResponseDto
+GetExternalSquadsResponseDto
+GetExternalSquadByUuidResponseDto
+CreateExternalSquadBodyDto
+CreateExternalSquadResponseDto
+UpdateExternalSquadBodyDto
+UpdateExternalSquadResponseDto
+ReorderExternalSquadsBodyDto
+ReorderExternalSquadsResponseDto
+GetNodeSecretKeyResponseDto
+GetNodesTagsResponseDto
+CreateNodeBodyDto
+NodeResponseDto
+GetNodesResponseDto
+UpdateNodeBodyDto
+RestartNodeBodyDto
+RestartAllNodesBodyDto
+ReorderNodesBodyDto
+ReorderNodesResponseDto
+ProfileModificationBodyDto
+BulkNodesActionsBodyDto
+BulkNodesUpdateBodyDto
+GetTorrentBlockerReportsResponseDto
+GetTorrentBlockerReportsStatsResponseDto
+GetNodePluginsResponseDto
+GetNodePluginResponseDto
+UpdateNodePluginBodyDto
+UpdateNodePluginResponseDto
+CreateNodePluginBodyDto
+CreateNodePluginResponseDto
+ReorderNodePluginsBodyDto
+ReorderNodePluginsResponseDto
+CloneNodePluginBodyDto
+CloneNodePluginResponseDto
+PluginExecutorBodyDto
+GetHostsTagsResponseDto
+CreateHostBodyDto
+HostResponseDto
+UpdateHostBodyDto
+GetHostsResponseDto
+ReorderHostsBodyDto
+ReorderHostsResponseDto
+BulkDeleteHostsBodyDto
+BulkDisableHostsBodyDto
+BulkEnableHostsBodyDto
+UpdateManyHostsBodyDto
+GetNodeUsageBodyDto
+GetNodeUsageResponseDto
+GetStatsNodeUsersUsageResponseDto
+GetStatsNodesUsersUsageBodyDto
+GetStatsNodesUsersUsageResponseDto
+GetStatsUserUsageResponseDto
+GetHwidDevicesQueryResponseDto
+CreateUserHwidDeviceBodyDto
+CreateUserHwidDeviceResponseDto
+DeleteUserHwidDeviceBodyDto
+DeleteUserHwidDeviceResponseDto
+DeleteAllUserHwidDevicesBodyDto
+DeleteAllUserHwidDevicesResponseDto
+GetHwidDevicesStatsResponseDto
+GetTopUsersByHwidDevicesResponseDto
+GetUserHwidDevicesResponseDto
+GetStatsNodesUsageResponseDto
+GetInfraProvidersResponseDto
+GetInfraProviderResponseDto
+CreateInfraProviderBodyDto
+CreateInfraProviderResponseDto
+UpdateInfraProviderBodyDto
+UpdateInfraProviderResponseDto
+CreateInfraBillingRecordBodyDto
+CreateInfraBillingRecordResponseDto
+GetInfraBillingRecordsResponseDto
+GetInfraBillingNodesResponseDto
+UpdateInfraBillingNodeBodyDto
+UpdateInfraBillingNodeResponseDto
+CreateInfraBillingNodeBodyDto
+CreateInfraBillingNodeResponseDto
+GetSubscriptionRequestHistoryResponseDto
+GetSubscriptionRequestHistoryStatsResponseDto
+GetMetadataResponseDto
+GetConfigurationResponseDto
+GetStatsResponseDto
+GetBandwidthStatsResponseDto
+GetNodesStatisticsResponseDto
+GetRemnawaveHealthResponseDto
+GetNodesMetricsResponseDto
+GenerateX25519ResponseDto
+DebugSrrMatcherBodyDto
+DebugSrrMatcherResponseDto
+GetRecapResponseDto
+GetStatsDigestResponseDto
+GetHttpStatsResponseDto
+GetSubscriptionSettingsResponseDto
+UpdateSubscriptionSettingsBodyDto
+UpdateSubscriptionSettingsResponseDto
+ConnectionsByUserResponseDto
+ConnectionsByUserResultResponseDto
+DropConnectionsBodyDto
+ConnectionsByNodeResponseDto
+ConnectionsByNodeResultResponseDto
+GetUserMetadataResponseDto
+UpsertUserMetadataBodyDto
+UpsertUserMetadataResponseDto
+GetNodeMetadataResponseDto
+UpsertNodeMetadataBodyDto
+UpsertNodeMetadataResponseDto
+RemnawaveWebhookUserEventsDto
+RemnawaveWebhookUserHwidDevicesEventsDto
+RemnawaveWebhookNodeEventsDto
+RemnawaveWebhookServiceEventsDto
+RemnawaveWebhookErrorsEventsDto
+RemnawaveWebhookCrmEventsDto
+RemnawaveWebhookTorrentBlockerEventsDto
+RemnawaveNotFoundErrorDto
+RemnawaveBadRequestErrorDto
+RemnawaveInternalServerErrorDto
+RemnawaveValidationErrorDto
+RemnawaveUserUsageStreamMessageDto
+RemnawaveSubscriptionRequestStreamMessageDto
+RemnawaveNodeConnectionsStreamMessageDto
+
+
+---------------
+
+
+
+
+
+
+
+Open API Client
+Powered by Scalar
+v3.2.3
+OpenAPI 3.0.0
+Remnawave API v3.2.3
+AGPL-3.0
+
+Remnawave is a powerful proxy management tool, built on top of Xray-core, with a focus on simplicity and ease of use.
+Resources
+
+    https://t.me/remnawave
+    https://github.com/remnawave
+    https://docs.rw
+
+No authentication selected
+Client Libraries
+Python http.client
+Users Controller ​
+
+Manage users, change their status, reset traffic, etc.
+Users Controller Operations
+
+    post/api/users
+    patch/api/users
+    get/api/users
+    delete/api/users/{userId}
+    get/api/users/{userId}
+    get/api/users/stream
+    get/api/users/tags
+    get/api/users/{userId}/accessible-nodes
+    get/api/users/{userId}/subscription-request-history
+    get/api/users/by-short-uuid/{shortUuid}
+    get/api/users/by-username/{username}
+    post/api/users/{userId}/actions/revoke
+    post/api/users/{userId}/actions/disable
+    post/api/users/{userId}/actions/enable
+    post/api/users/{userId}/actions/reset-traffic
+    post/api/users/{userId}/actions/extend
+    post/api/users/resolve
+
+Create a new user​
+Body·
+required
+application/json
+
+    username
+    Type: string
+    min length:  
+    3
+    max length:  
+    36
+    Pattern: ^[a-zA-Z0-9_-]+$
+    required
+
+    Unique username for the user. Required. Must be 3-36 characters long and contain only letters, numbers, underscores and dashes.
+    expireAt
+    Type: string
+    Pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z||([+-](?:[01]\d|2[0-3]):[0-5]\d)))$
+    Format: date-time
+    required
+
+    Account expiration date. Required. Format: 2025-01-17T15:38:45.065Z
+    status
+    Type: string enum
+
+    Optional. User account status. Defaults to ACTIVE.
+    values
+        ACTIVE
+        DISABLED
+        LIMITED
+        EXPIRED
+    shortUuid
+    Type: string
+
+    Optional. Short UUID identifier for the user.
+    trojanPassword
+    Type: string
+    min length:  
+    8
+    max length:  
+    32
+
+    Optional. Password for Trojan protocol. Must be 8-32 characters.
+    vlessUuid
+    Type: string
+    Pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})$
+    Format: uuid
+
+    Optional. UUID for VLESS protocol. Must be a valid UUID format.
+    ssPassword
+    Type: string
+    min length:  
+    8
+    max length:  
+    32
+
+    Optional. Password for Shadowsocks protocol. Must be 8-32 characters.
+    trafficLimitBytes
+    Type: number
+    min:  
+    0
+
+    Optional. Traffic limit in bytes. Set to 0 for unlimited traffic.
+    trafficLimitStrategy
+    Type: string enum
+
+    Available reset periods
+    values
+        NO_RESET
+        DAY
+        WEEK
+        MONTH
+        MONTH_ROLLING
+    createdAt
+    Type: string
+    Pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z||([+-](?:[01]\d|2[0-3]):[0-5]\d)))$
+    Format: date-time
+
+    Optional. Account creation date. Format: 2025-01-17T15:38:45.065Z
+    lastTrafficResetAt
+    Type: string
+    Pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z||([+-](?:[01]\d|2[0-3]):[0-5]\d)))$
+    Format: date-time
+
+    Optional. Date of last traffic reset. Format: 2025-01-17T15:38:45.065Z
+    description
+    Type: string
+
+    Optional. Additional notes or description for the user account.
+
+Responses
+
+    application/json
+
+    application/json
+
+    application/json
+
+    application/json
+
+Request Example for post/api/users
+
+import http.client
+import json
+
+conn = http.client.HTTPConnection("replace.me")
+
+payload = json.dumps({
+  "username": "",
+  "status": "ACTIVE",
+  "shortUuid": "",
+  "trojanPassword": "",
+  "vlessUuid": "",
+  "ssPassword": "",
+  "trafficLimitBytes": 0,
+  "trafficLimitStrategy": "NO_RESET",
+  "expireAt": "",
+  "createdAt": "",
+  "lastTrafficResetAt": "",
+  "description": "",
+  "tag": None,
+  "telegramId": None,
+  "email": None,
+  "hwidDeviceLimit": 0,
+  "activeInternalSquads": [
+    ""
+  ],
+  "externalSquadUuid": None
+})
+headers = {
+  "Content-Type": "application/json",
+  "Authorization": "Bearer YOUR_SECRET_TOKEN"
+}
+
+conn.request(
+    "POST",
+    "/api/users",
+    body=payload,
+    headers=headers,
+)
+
+response = conn.getresponse()
+print(response.read().decode())
+
+conn.close()
+
+{
+  "response": {
+    "id": 1,
+    "shortUuid": "string",
+    "username": "string",
+    "status": "ACTIVE",
+    "trafficLimitBytes": 1,
+    "trafficLimitStrategy": "NO_RESET",
+    "expireAt": "2026-08-19T12:03:54.690Z",
+    "telegramId": null,
+    "email": null,
+    "description": null,
+    "tag": null,
+    "hwidDeviceLimit": null,
+    "externalSquadUuid": null,
+    "trojanPassword": "string",
+    "vlessUuid": "123e4567-e89b-12d3-a456-426614174000",
+    "ssPassword": "string",
+    "lastTriggeredThreshold": -9007199254740991,
+    "subRevokedAt": null,
+    "lastTrafficResetAt": null,
+    "createdAt": "2026-08-19T12:03:54.690Z",
+    "updatedAt": "2026-08-19T12:03:54.690Z",
+    "subscriptionUrl": "string",
+    "activeInternalSquads": [
+      {
+        "uuid": "123e4567-e89b-12d3-a456-426614174000",
+        "name": "string"
+      }
+    ],
+    "userTraffic": {
+      "usedTrafficBytes": 1,
+      "lifetimeUsedTrafficBytes": 1,
+      "onlineAt": null,
+      "firstConnectedAt": null,
+      "lastConnectedNodeUuid": null
+    }
+  }
+}
+
+Resource created successfully
+Update a user​
+
+Update a user by ID or username. Exactly one of the fields must be provided.
+Body·
+required
+application/json
+
+    username
+    Type: string
+
+    Username of the user
+    id
+    Type: number
+
+    ID of the user
+    status
+    Type: string enum
+    values
+        ACTIVE
+        DISABLED
+    trafficLimitBytes
+    Type: number
+    min:  
+    0
+
+    Traffic limit in bytes. 0 - unlimited
+    trafficLimitStrategy
+    Type: string enum
+
+    Traffic limit reset strategy
+    values
+        NO_RESET
+        DAY
+        WEEK
+        MONTH
+        MONTH_ROLLING
+    expireAt
+    Type: string
+    Pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?(?:Z||([+-](?:[01]\d|2[0-3]):[0-5]\d)))$
+    Format: date-time
+
+    Expiration date: 2025-01-17T15:38:45.065Z
+    description
+    Type: string | null
+    tag
+    Type: string | null
+    max length:  
+    16
+    Pattern: ^[A-Z0-9_]+$
+    telegramId
+    Type: number | null
+    email
+    Type: string | null
+    Pattern: ^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$
+    Format: email
+    hwidDeviceLimit
+    Type: integer | null
+    min:  
+    0
+    max:  
+    9007199254740991
+
+    Integer numbers.
+    activeInternalSquads
+    Type: array string[]
+    Pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+    Format: uuid
+
+Responses
+
+    application/json
+
+    application/json
+
+    application/json
+
+    application/json
+
+Request Example for patch/api/users
+
+import http.client
+import json
+
+conn = http.client.HTTPConnection("replace.me")
+
+payload = json.dumps({
+  "username": "",
+  "id": 1,
+  "status": "ACTIVE",
+  "trafficLimitBytes": 0,
+  "trafficLimitStrategy": "NO_RESET",
+  "expireAt": "",
+  "description": None,
+  "tag": None,
+  "telegramId": None,
+  "email": None,
+  "hwidDeviceLimit": None,
+  "activeInternalSquads": [
+    ""
+  ],
+  "externalSquadUuid": None
+})
+headers = {
+  "Content-Type": "application/json",
+  "Authorization": "Bearer YOUR_SECRET_TOKEN"
+}
+
+conn.request(
+    "PATCH",
+    "/api/users",
+    body=payload,
+    headers=headers,
+)
+
+response = conn.getresponse()
+print(response.read().decode())
+
+conn.close()
+
+{
+  "response": {
+    "id": 1,
+    "shortUuid": "string",
+    "username": "string",
+    "status": "ACTIVE",
+    "trafficLimitBytes": 1,
+    "trafficLimitStrategy": "NO_RESET",
+    "expireAt": "2026-08-19T12:03:54.690Z",
+    "telegramId": null,
+    "email": null,
+    "description": null,
+    "tag": null,
+    "hwidDeviceLimit": null,
+    "externalSquadUuid": null,
+    "trojanPassword": "string",
+    "vlessUuid": "123e4567-e89b-12d3-a456-426614174000",
+    "ssPassword": "string",
+    "lastTriggeredThreshold": -9007199254740991,
+    "subRevokedAt": null,
+    "lastTrafficResetAt": null,
+    "createdAt": "2026-08-19T12:03:54.690Z",
+    "updatedAt": "2026-08-19T12:03:54.690Z",
+    "subscriptionUrl": "string",
+    "activeInternalSquads": [
+      {
+        "uuid": "123e4567-e89b-12d3-a456-426614174000",
+        "name": "string"
+      }
+    ],
+    "userTraffic": {
+      "usedTrafficBytes": 1,
+      "lifetimeUsedTrafficBytes": 1,
+      "onlineAt": null,
+      "firstConnectedAt": null,
+      "lastConnectedNodeUuid": null
+    }
+  }
+}
+
+Operation successful
+Get all users using offset-based pagination​
+
+Please note that the filters here are primarily intended for use by the frontend and rely on expensive operators such as LIKE under the hood. Misusing these filters may negatively impact the performance of your database.
+Query Parameters
+
+    start
+    Type: number
+
+    Start index (offset) of the results to return, default is 0
+    size
+    Type: number
+    min:  
+    1
+    max:  
+    1000
+
+    Number of results to return, no more than 1000
+    filters
+    Type: array object[]
+        id
+        Type: string
+        required
+        value
+        required
+    filterModes
+    Type: object
+        propertyName
+        Type: string 
+    globalFilterMode
+    Type: string
+    sorting
+    Type: array object[]
+        id
+        Type: string
+        required
+        desc
+        Type: boolean
+        required
+
+Responses
+
+    application/json
+
+    application/json
+
+    application/json
+
+    application/json
+
+Request Example for get/api/users
+
+import http.client
+
+conn = http.client.HTTPConnection("replace.me")
+
+headers = {
+  "Authorization": "Bearer YOUR_SECRET_TOKEN"
+}
+
+conn.request(
+    "GET",
+    "/api/users",
+    headers=headers,
+)
+
+response = conn.getresponse()
+print(response.read().decode())
+
+conn.close()
+
+{
+  "response": {
+    "users": [
+      {
+        "id": 1,
+        "shortUuid": "string",
+        "username": "string",
+        "status": "ACTIVE",
+        "trafficLimitBytes": 1,
+        "trafficLimitStrategy": "NO_RESET",
+        "expireAt": "2026-08-19T12:03:54.690Z",
+        "telegramId": null,
+        "email": null,
+        "description": null,
+        "tag": null,
+        "hwidDeviceLimit": null,
+        "externalSquadUuid": null,
+        "trojanPassword": "string",
+        "vlessUuid": "123e4567-e89b-12d3-a456-426614174000",
+        "ssPassword": "string",
+        "lastTriggeredThreshold": -9007199254740991,
+        "subRevokedAt": null,
+        "lastTrafficResetAt": null,
+        "createdAt": "2026-08-19T12:03:54.690Z",
+        "updatedAt": "2026-08-19T12:03:54.690Z",
+        "subscriptionUrl": "string",
+        "activeInternalSquads": [
+          {
+            "uuid": "123e4567-e89b-12d3-a456-426614174000",
+            "name": "string"
+          }
+        ],
+        "userTraffic": {
+          "usedTrafficBytes": 1,
+          "lifetimeUsedTrafficBytes": 1,
+          "onlineAt": null,
+          "firstConnectedAt": null,
+          "lastConnectedNodeUuid": null
+        }
+      }
+    ],
+    "total": 1
+  }
+}
+
+Operation successful
+Delete user​
+Path Parameters
+
+    userId
+    Type: number
+    greater than:  
+    0
+    required
+
+Responses
+
+    204
+
+    Operation successful, no content returned
+
+    application/json
+
+    application/json
+
+    application/json
+
+Request Example for delete/api/users/{userId}
+
+import http.client
+
+conn = http.client.HTTPConnection("replace.me")
+
+headers = {
+  "Authorization": "Bearer YOUR_SECRET_TOKEN"
+}
+
+conn.request(
+    "DELETE",
+    "/api/users/1",
+    headers=headers,
+)
+
+response = conn.getresponse()
+print(response.read().decode())
+
+conn.close()
+
+No Body
+
+Operation successful, no content returned
+Get user by ID​
+Path Parameters
+
+    userId
+    Type: number
+    greater than:  
+    0
+    required
+
+Responses
+
+    application/json
+
+    application/json
+
+    application/json
+
+    application/json
+
+Request Example for get/api/users/{userId}
+
+import http.client
+
+conn = http.client.HTTPConnection("replace.me")
+
+headers = {
+  "Authorization": "Bearer YOUR_SECRET_TOKEN"
+}
+
+conn.request(
+    "GET",
+    "/api/users/1",
+    headers=headers,
+)
+
+response = conn.getresponse()
+print(response.read().decode())
+
+conn.close()
+
+{
+  "response": {
+    "id": 1,
+    "shortUuid": "string",
+    "username": "string",
+    "status": "ACTIVE",
+    "trafficLimitBytes": 1,
+    "trafficLimitStrategy": "NO_RESET",
+    "expireAt": "2026-08-19T12:03:54.690Z",
+    "telegramId": null,
+    "email": null,
+    "description": null,
+    "tag": null,
+    "hwidDeviceLimit": null,
+    "externalSquadUuid": null,
+    "trojanPassword": "string",
+    "vlessUuid": "123e4567-e89b-12d3-a456-426614174000",
+    "ssPassword": "string",
+    "lastTriggeredThreshold": -9007199254740991,
+    "subRevokedAt": null,
+    "lastTrafficResetAt": null,
+    "createdAt": "2026-08-19T12:03:54.690Z",
+    "updatedAt": "2026-08-19T12:03:54.690Z",
+    "subscriptionUrl": "string",
+    "activeInternalSquads": [
+      {
+        "uuid": "123e4567-e89b-12d3-a456-426614174000",
+        "name": "string"
+      }
+    ],
+    "userTraffic": {
+      "usedTrafficBytes": 1,
+      "lifetimeUsedTrafficBytes": 1,
+      "onlineAt": null,
+      "firstConnectedAt": null,
+      "lastConnectedNodeUuid": null
+    }
+  }
+}
+
+Operation successful
+Get all users using cursor-based (keyset) pagination with filtering options​
+Query Parameters
+
+    cursor
+    Type: number
+
+    Cursor for pagination — pass the nextCursor from the previous response. Omit on the first request.
+    size
+    Type: number
+    min:  
+    1
+    max:  
+    1000
+
+    Number of results to return, no more than 1000
+    status
+    Type: string enum
+
+    Status to filter users by
+    values
+        ACTIVE
+        DISABLED
+        LIMITED
+        EXPIRED
+    trafficLimitStrategy
+    Type: string enum
+
+    Traffic limit strategy to filter users by
+    values
+        NO_RESET
+        DAY
+        WEEK
+        MONTH
+        MONTH_ROLLING
+    telegramId
+    Type: string
+
+    Telegram ID to filter users by
+    email
+    Type: string
+    Pattern: ^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$
+    Format: email
+
+    Email to filter users by
+    tag
+    Type: string
+
+    Tag to filter users by
+    externalSquadUuid
+    Type: string
+    Pattern: ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$
+    Format: uuid
+
+    External squad UUID to filter users by
+
+Responses
+
+    application/json
+
+    application/json
+
+    application/json
+
+    application/json
+
+Request Example for get/api/users/stream
+
+import http.client
+
+conn = http.client.HTTPConnection("replace.me")
+
+headers = {
+  "Authorization": "Bearer YOUR_SECRET_TOKEN"
+}
+
+conn.request(
+    "GET",
+    "/api/users/stream",
+    headers=headers,
+)
+
+response = conn.getresponse()
+print(response.read().decode())
+
+conn.close()
+
+{
+  "response": {
+    "users": [
+      {
+        "id": 1,
+        "shortUuid": "string",
+        "username": "string",
+        "status": "ACTIVE",
+        "trafficLimitBytes": 1,
+        "trafficLimitStrategy": "NO_RESET",
+        "expireAt": "2026-08-19T12:03:54.690Z",
+        "telegramId": null,
+        "email": null,
+        "description": null,
+        "tag": null,
+        "hwidDeviceLimit": null,
+        "externalSquadUuid": null,
+        "trojanPassword": "string",
+        "vlessUuid": "123e4567-e89b-12d3-a456-426614174000",
+        "ssPassword": "string",
+        "lastTriggeredThreshold": -9007199254740991,
+        "subRevokedAt": null,
+        "lastTrafficResetAt": null,
+        "createdAt": "2026-08-19T12:03:54.690Z",
+        "updatedAt": "2026-08-19T12:03:54.690Z",
+        "subscriptionUrl": "string",
+        "activeInternalSquads": [
+          {
+            "uuid": "123e4567-e89b-12d3-a456-426614174000",
+            "name": "string"
+          }
+        ],
+        "userTraffic": {
+          "usedTrafficBytes": 1,
+          "lifetimeUsedTrafficBytes": 1,
+          "onlineAt": null,
+          "firstConnectedAt": null,
+          "lastConnectedNodeUuid": null
+        }
+      }
+    ],
+    "nextCursor": null,
+    "hasMore": true
+  }
+}
+
+Operation successful
+Get users tags​
+Responses
+
+    application/json
+
+    application/json
+
+    application/json
+
+    application/json
+
+Request Example for get/api/users/tags
+
+import http.client
+
+conn = http.client.HTTPConnection("replace.me")
+
+headers = {
+  "Authorization": "Bearer YOUR_SECRET_TOKEN"
+}
+
+conn.request(
+    "GET",
+    "/api/users/tags",
+    headers=headers,
+)
+
+response = conn.getresponse()
+print(response.read().decode())
+
+conn.close()
+
+{
+  "response": {
+    "tags": [
+      "string"
+    ]
+  }
+}
+
+Operation successful
+Get user accessible nodes​
+Path Parameters
+
+    userId
+    Type: number
+    greater than:  
+    0
+    required
+
+Responses
+
+    application/json
+
+    application/json
+
+    application/json
+
+    application/json
+
+Request Example for get/api/users/{userId}/accessible-nodes
+
+import http.client
+
+conn = http.client.HTTPConnection("replace.me")
+
+headers = {
+  "Authorization": "Bearer YOUR_SECRET_TOKEN"
+}
+
+conn.request(
+    "GET",
+    "/api/users/1/accessible-nodes",
+    headers=headers,
+)
+
+response = conn.getresponse()
+print(response.read().decode())
+
+conn.close()
+
+{
+  "response": {
+    "userId": 1,
+    "activeNodes": [
+      {
+        "uuid": "123e4567-e89b-12d3-a456-426614174000",
+        "nodeName": "string",
+        "countryCode": "string",
+        "configProfileUuid": "123e4567-e89b-12d3-a456-426614174000",
+        "configProfileName": "string",
+        "activeSquads": [
+          {
+            "squadName": "string",
+            "activeInbounds": [
+              "string"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+
+Operation successful
+Get user subscription request history, recent 24 records​
+Path Parameters
+
+    userId
+    Type: number
+    greater than:  
+    0
+    required
+
+Responses
+
+    application/json
+
+    application/json
+
+    application/json
+
+    application/json
+
+Request Example for get/api/users/{userId}/subscription-request-history
+
+import http.client
+
+conn = http.client.HTTPConnection("replace.me")
+
+headers = {
+  "Authorization": "Bearer YOUR_SECRET_TOKEN"
+}
+
+conn.request(
+    "GET",
+    "/api/users/1/subscription-request-history",
+    headers=headers,
+)
+
+response = conn.getresponse()
+print(response.read().decode())
+
+conn.close()
+
+{
+  "response": {
+    "total": 1,
+    "records": [
+      {
+        "id": 1,
+        "userId": 1,
+        "requestAt": "2026-08-19T12:03:54.690Z",
+        "srrResponseType": "string",
+        "requestIp": null,
+        "userAgent": null,
+        "srrRuleName": null
+      }
+    ]
+  }
+}
+
+Operation successful
+Get user by Short UUID​
+Path Parameters
+
+    shortUuid
+    Type: string
+    required
+
+Responses
+
+    application/json
+
+    application/json
+
+    application/json
+
+    application/json
+
+Request Example for get/api/users/by-short-uuid/{shortUuid}
+
+import http.client
+
+conn = http.client.HTTPConnection("replace.me")
+
+headers = {
+  "Authorization": "Bearer YOUR_SECRET_TOKEN"
+}
+
+conn.request(
+    "GET",
+    "/api/users/by-short-uuid/%7BshortUuid%7D",
+    headers=headers,
+)
+
+response = conn.getresponse()
+print(response.read().decode())
+
+conn.close()
+
+{
+  "response": {
+    "id": 1,
+    "shortUuid": "string",
+    "username": "string",
+    "status": "ACTIVE",
+    "trafficLimitBytes": 1,
+    "trafficLimitStrategy": "NO_RESET",
+    "expireAt": "2026-08-19T12:03:54.690Z",
+    "telegramId": null,
+    "email": null,
+    "description": null,
+    "tag": null,
+    "hwidDeviceLimit": null,
+    "externalSquadUuid": null,
+    "trojanPassword": "string",
+    "vlessUuid": "123e4567-e89b-12d3-a456-426614174000",
+    "ssPassword": "string",
+    "lastTriggeredThreshold": -9007199254740991,
+    "subRevokedAt": null,
+    "lastTrafficResetAt": null,
+    "createdAt": "2026-08-19T12:03:54.690Z",
+    "updatedAt": "2026-08-19T12:03:54.690Z",
+    "subscriptionUrl": "string",
+    "activeInternalSquads": [
+      {
+        "uuid": "123e4567-e89b-12d3-a456-426614174000",
+        "name": "string"
+      }
+    ],
+    "userTraffic": {
+      "usedTrafficBytes": 1,
+      "lifetimeUsedTrafficBytes": 1,
+      "onlineAt": null,
+      "firstConnectedAt": null,
+      "lastConnectedNodeUuid": null
+    }
+  }
+}
+
+Operation successful
+Get user by username​
+Path Parameters
+
+    username
+    Type: string
+    required
+
+Responses
+
+    application/json
+
+    application/json
+
+    application/json
+
+    application/json
+
+Request Example for get/api/users/by-username/{username}
+
+import http.client
+
+conn = http.client.HTTPConnection("replace.me")
+
+headers = {
+  "Authorization": "Bearer YOUR_SECRET_TOKEN"
+}
+
+conn.request(
+    "GET",
+    "/api/users/by-username/%7Busername%7D",
+    headers=headers,
+)
+
+response = conn.getresponse()
+print(response.read().decode())
+
+conn.close()
+
+{
+  "response": {
+    "id": 1,
+    "shortUuid": "string",
+    "username": "string",
+    "status": "ACTIVE",
+    "trafficLimitBytes": 1,
+    "trafficLimitStrategy": "NO_RESET",
+    "expireAt": "2026-08-19T12:03:54.690Z",
+    "telegramId": null,
+    "email": null,
+    "description": null,
+    "tag": null,
+    "hwidDeviceLimit": null,
+    "externalSquadUuid": null,
+    "trojanPassword": "string",
+    "vlessUuid": "123e4567-e89b-12d3-a456-426614174000",
+    "ssPassword": "string",
+    "lastTriggeredThreshold": -9007199254740991,
+    "subRevokedAt": null,
+    "lastTrafficResetAt": null,
+    "createdAt": "2026-08-19T12:03:54.690Z",
+    "updatedAt": "2026-08-19T12:03:54.690Z",
+    "subscriptionUrl": "string",
+    "activeInternalSquads": [
+      {
+        "uuid": "123e4567-e89b-12d3-a456-426614174000",
+        "name": "string"
+      }
+    ],
+    "userTraffic": {
+      "usedTrafficBytes": 1,
+      "lifetimeUsedTrafficBytes": 1,
+      "onlineAt": null,
+      "firstConnectedAt": null,
+      "lastConnectedNodeUuid": null
+    }
+  }
+}
+
+Operation successful
+Revoke user subscription​
+Path Parameters
+
+    userId
+    Type: number
+    greater than:  
+    0
+    required
+
+Body·
+required
+application/json
+
+    revokeOnlyPasswords
+    Type: boolean
+
+    Optional. If true, only passwords will be revoked, without changing the short UUID (Subscription URL).
+    shortUuid
+    Type: string
+    min length:  
+    16
+    max length:  
+    64
+
+    Optional. If not provided, a new short UUID will be generated by Remnawave. Please note that it is strongly recommended to allow Remnawave to generate the short UUID.
+
+Responses
+
+    application/json
+
+    application/json
+
+    application/json
+
+    application/json
+
+Request Example for post/api/users/{userId}/actions/revoke
+
+import http.client
+import json
+
+conn = http.client.HTTPConnection("replace.me")
+
+payload = json.dumps({
+  "revokeOnlyPasswords": False,
+  "shortUuid": ""
+})
+headers = {
+  "Content-Type": "application/json",
+  "Authorization": "Bearer YOUR_SECRET_TOKEN"
+}
+
+conn.request(
+    "POST",
+    "/api/users/1/actions/revoke",
+    body=payload,
+    headers=headers,
+)
+
+response = conn.getresponse()
+print(response.read().decode())
+
+conn.close()
+
+{
+  "response": {
+    "id": 1,
+    "shortUuid": "string",
+    "username": "string",
+    "status": "ACTIVE",
+    "trafficLimitBytes": 1,
+    "trafficLimitStrategy": "NO_RESET",
+    "expireAt": "2026-08-19T12:03:54.690Z",
+    "telegramId": null,
+    "email": null,
+    "description": null,
+    "tag": null,
+    "hwidDeviceLimit": null,
+    "externalSquadUuid": null,
+    "trojanPassword": "string",
+    "vlessUuid": "123e4567-e89b-12d3-a456-426614174000",
+    "ssPassword": "string",
+    "lastTriggeredThreshold": -9007199254740991,
+    "subRevokedAt": null,
+    "lastTrafficResetAt": null,
+    "createdAt": "2026-08-19T12:03:54.690Z",
+    "updatedAt": "2026-08-19T12:03:54.690Z",
+    "subscriptionUrl": "string",
+    "activeInternalSquads": [
+      {
+        "uuid": "123e4567-e89b-12d3-a456-426614174000",
+        "name": "string"
+      }
+    ],
+    "userTraffic": {
+      "usedTrafficBytes": 1,
+      "lifetimeUsedTrafficBytes": 1,
+      "onlineAt": null,
+      "firstConnectedAt": null,
+      "lastConnectedNodeUuid": null
+    }
+  }
+}
+
+Operation successful
+Disable user​
+Path Parameters
+
+    userId
+    Type: number
+    greater than:  
+    0
+    required
+
+Responses
+
+    application/json
+
+    application/json
+
+    application/json
+
+    application/json
+
+Request Example for post/api/users/{userId}/actions/disable
+
+import http.client
+
+conn = http.client.HTTPConnection("replace.me")
+
+headers = {
+  "Authorization": "Bearer YOUR_SECRET_TOKEN"
+}
+
+conn.request(
+    "POST",
+    "/api/users/1/actions/disable",
+    headers=headers,
+)
+
+response = conn.getresponse()
+print(response.read().decode())
+
+conn.close()
+
+{
+  "response": {
+    "id": 1,
+    "shortUuid": "string",
+    "username": "string",
+    "status": "ACTIVE",
+    "trafficLimitBytes": 1,
+    "trafficLimitStrategy": "NO_RESET",
+    "expireAt": "2026-08-19T12:03:54.690Z",
+    "telegramId": null,
+    "email": null,
+    "description": null,
+    "tag": null,
+    "hwidDeviceLimit": null,
+    "externalSquadUuid": null,
+    "trojanPassword": "string",
+    "vlessUuid": "123e4567-e89b-12d3-a456-426614174000",
+    "ssPassword": "string",
+    "lastTriggeredThreshold": -9007199254740991,
+    "subRevokedAt": null,
+    "lastTrafficResetAt": null,
+    "createdAt": "2026-08-19T12:03:54.690Z",
+    "updatedAt": "2026-08-19T12:03:54.690Z",
+    "subscriptionUrl": "string",
+    "activeInternalSquads": [
+      {
+        "uuid": "123e4567-e89b-12d3-a456-426614174000",
+        "name": "string"
+      }
+    ],
+    "userTraffic": {
+      "usedTrafficBytes": 1,
+      "lifetimeUsedTrafficBytes": 1,
+      "onlineAt": null,
+      "firstConnectedAt": null,
+      "lastConnectedNodeUuid": null
+    }
+  }
+}
+
+Operation successful
+Enable user​
+Path Parameters
+
+    userId
+    Type: number
+    greater than:  
+    0
+    required
+
+Responses
+
+    application/json
+
+    application/json
+
+    application/json
+
+    application/json
+
+Request Example for post/api/users/{userId}/actions/enable
+
+import http.client
+
+conn = http.client.HTTPConnection("replace.me")
+
+headers = {
+  "Authorization": "Bearer YOUR_SECRET_TOKEN"
+}
+
+conn.request(
+    "POST",
+    "/api/users/1/actions/enable",
+    headers=headers,
+)
+
+response = conn.getresponse()
+print(response.read().decode())
+
+conn.close()
+
+{
+  "response": {
+    "id": 1,
+    "shortUuid": "string",
+    "username": "string",
+    "status": "ACTIVE",
+    "trafficLimitBytes": 1,
+    "trafficLimitStrategy": "NO_RESET",
+    "expireAt": "2026-08-19T12:03:54.690Z",
+    "telegramId": null,
+    "email": null,
+    "description": null,
+    "tag": null,
+    "hwidDeviceLimit": null,
+    "externalSquadUuid": null,
+    "trojanPassword": "string",
+    "vlessUuid": "123e4567-e89b-12d3-a456-426614174000",
+    "ssPassword": "string",
+    "lastTriggeredThreshold": -9007199254740991,
+    "subRevokedAt": null,
+    "lastTrafficResetAt": null,
+    "createdAt": "2026-08-19T12:03:54.690Z",
+    "updatedAt": "2026-08-19T12:03:54.690Z",
+    "subscriptionUrl": "string",
+    "activeInternalSquads": [
+      {
+        "uuid": "123e4567-e89b-12d3-a456-426614174000",
+        "name": "string"
+      }
+    ],
+    "userTraffic": {
+      "usedTrafficBytes": 1,
+      "lifetimeUsedTrafficBytes": 1,
+      "onlineAt": null,
+      "firstConnectedAt": null,
+      "lastConnectedNodeUuid": null
+    }
+  }
+}
+
+Operation successful
+Reset user traffic​
+Path Parameters
+
+    userId
+    Type: number
+    greater than:  
+    0
+    required
+
+Responses
+
+    application/json
+
+    application/json
+
+    application/json
+
+    application/json
+
+Request Example for post/api/users/{userId}/actions/reset-traffic
+
+import http.client
+
+conn = http.client.HTTPConnection("replace.me")
+
+headers = {
+  "Authorization": "Bearer YOUR_SECRET_TOKEN"
+}
+
+conn.request(
+    "POST",
+    "/api/users/1/actions/reset-traffic",
+    headers=headers,
+)
+
+response = conn.getresponse()
+print(response.read().decode())
+
+conn.close()
+
+{
+  "response": {
+    "id": 1,
+    "shortUuid": "string",
+    "username": "string",
+    "status": "ACTIVE",
+    "trafficLimitBytes": 1,
+    "trafficLimitStrategy": "NO_RESET",
+    "expireAt": "2026-08-19T12:03:54.690Z",
+    "telegramId": null,
+    "email": null,
+    "description": null,
+    "tag": null,
+    "hwidDeviceLimit": null,
+    "externalSquadUuid": null,
+    "trojanPassword": "string",
+    "vlessUuid": "123e4567-e89b-12d3-a456-426614174000",
+    "ssPassword": "string",
+    "lastTriggeredThreshold": -9007199254740991,
+    "subRevokedAt": null,
+    "lastTrafficResetAt": null,
+    "createdAt": "2026-08-19T12:03:54.690Z",
+    "updatedAt": "2026-08-19T12:03:54.690Z",
+    "subscriptionUrl": "string",
+    "activeInternalSquads": [
+      {
+        "uuid": "123e4567-e89b-12d3-a456-426614174000",
+        "name": "string"
+      }
+    ],
+    "userTraffic": {
+      "usedTrafficBytes": 1,
+      "lifetimeUsedTrafficBytes": 1,
+      "onlineAt": null,
+      "firstConnectedAt": null,
+      "lastConnectedNodeUuid": null
+    }
+  }
+}
+
+Operation successful
+Extend user expiration date​
+
+If user status is EXPIRED, the new expiration date is calculated from the current date and the user becomes ACTIVE. If user status is ACTIVE, the given number of days is added to the existing expiration date. DISABLED and LIMITED users will be extended, but their status will not change.
+Path Parameters
+
+    userId
+    Type: number
+    greater than:  
+    0
+    required
+
+Body·
+required
+application/json
+
+    days
+    Type: number
+    min:  
+    1
+    required
+
+    The number of days to extend the expiration date.
+
+Responses
+
+    application/json
+
+    application/json
+
+    application/json
+
+    application/json
+
+Request Example for post/api/users/{userId}/actions/extend
+
+import http.client
+import json
+
+conn = http.client.HTTPConnection("replace.me")
+
+payload = json.dumps({
+  "days": 1
+})
+headers = {
+  "Content-Type": "application/json",
+  "Authorization": "Bearer YOUR_SECRET_TOKEN"
+}
+
+conn.request(
+    "POST",
+    "/api/users/1/actions/extend",
+    body=payload,
+    headers=headers,
+)
+
+response = conn.getresponse()
+print(response.read().decode())
+
+conn.close()
+
+{
+  "response": {
+    "id": 1,
+    "shortUuid": "string",
+    "username": "string",
+    "status": "ACTIVE",
+    "trafficLimitBytes": 1,
+    "trafficLimitStrategy": "NO_RESET",
+    "expireAt": "2026-08-19T12:03:54.690Z",
+    "telegramId": null,
+    "email": null,
+    "description": null,
+    "tag": null,
+    "hwidDeviceLimit": null,
+    "externalSquadUuid": null,
+    "trojanPassword": "string",
+    "vlessUuid": "123e4567-e89b-12d3-a456-426614174000",
+    "ssPassword": "string",
+    "lastTriggeredThreshold": -9007199254740991,
+    "subRevokedAt": null,
+    "lastTrafficResetAt": null,
+    "createdAt": "2026-08-19T12:03:54.690Z",
+    "updatedAt": "2026-08-19T12:03:54.690Z",
+    "subscriptionUrl": "string",
+    "activeInternalSquads": [
+      {
+        "uuid": "123e4567-e89b-12d3-a456-426614174000",
+        "name": "string"
+      }
+    ],
+    "userTraffic": {
+      "usedTrafficBytes": 1,
+      "lifetimeUsedTrafficBytes": 1,
+      "onlineAt": null,
+      "firstConnectedAt": null,
+      "lastConnectedNodeUuid": null
+    }
+  }
+}
+
+Operation successful
+Resolve a user​
+
+Resolve a user by ID, Short UUID or username. Exactly one of the fields must be provided.
+Body·
+required
+application/json
+
+    id
+    Type: number
+    shortUuid
+    Type: string
+    username
+    Type: string 
+
+Responses
+
+    application/json
+
+    application/json
+
+    application/json
+
+    application/json
+
+Request Example for post/api/users/resolve
+
+import http.client
+import json
+
+conn = http.client.HTTPConnection("replace.me")
+
+payload = json.dumps({
+  "id": 1,
+  "shortUuid": "",
+  "username": ""
+})
+headers = {
+  "Content-Type": "application/json",
+  "Authorization": "Bearer YOUR_SECRET_TOKEN"
+}
+
+conn.request(
+    "POST",
+    "/api/users/resolve",
+    body=payload,
+    headers=headers,
+)
+
+response = conn.getresponse()
+print(response.read().decode())
+
+conn.close()
+
+{
+  "response": {
+    "id": 1,
+    "username": "string",
+    "shortUuid": "string"
+  }
+}
+
+Operation successful
+Users Bulk Actions Controller (Collapsed) ​
+
+Bulk actions with users.
+Users Bulk Actions Controller Operations
+
+    post/api/users/bulk/delete-by-status
+    post/api/users/bulk/delete
+    post/api/users/bulk/revoke-subscription
+    post/api/users/bulk/reset-traffic
+    post/api/users/bulk/update
+    post/api/users/bulk/update-squads
+    post/api/users/bulk/extend-expiration-date
+    post/api/users/bulk/all/update
+    post/api/users/bulk/all/reset-traffic
+    post/api/users/bulk/all/extend-expiration-date
+
+HWID User Devices Controller (Collapsed) ​
+HWID User Devices Controller Operations
+
+    get/api/hwid/devices
+    post/api/hwid/devices
+    post/api/hwid/devices/delete
+    post/api/hwid/devices/delete-all
+    get/api/hwid/devices/stats
+    get/api/hwid/devices/top-users
+    get/api/hwid/devices/{userId}
+
+[Public] Subscription Controller (Collapsed) ​
+
+Public Subscription Controller. Methods of this controller are not protected with auth. Use it only for public requests.
+[Public] Subscription Controller Operations
+
+    get/api/sub/{shortUuid}/info
+    get/api/sub/{shortUuid}
+    get/api/sub/{shortUuid}/{clientType}
+
+[Protected] Subscriptions Controller (Collapsed) ​
+
+Methods of this controller are protected with auth, most of them is returning the same informations as public Subscription Controller.
+[Protected] Subscriptions Controller Operations
+
+    get/api/subscriptions
+    get/api/subscriptions/by-username/{username}
+    get/api/subscriptions/by-short-uuid/{shortUuid}
+    get/api/subscriptions/by-id/{userId}
+    get/api/subscriptions/by-short-uuid/{shortUuid}/raw
+    get/api/subscriptions/subpage-config/{shortUuid}
+    get/api/subscriptions/connection-keys/{userId}
+
+Nodes Controller (Collapsed) ​
+Nodes Controller Operations
+
+    get/api/nodes/tags
+    post/api/nodes
+    get/api/nodes
+    patch/api/nodes
+    get/api/nodes/{uuid}
+    delete/api/nodes/{uuid}
+    post/api/nodes/{uuid}/actions/enable
+    post/api/nodes/{uuid}/actions/disable
+    post/api/nodes/{uuid}/actions/restart
+    post/api/nodes/{uuid}/actions/reset-traffic
+    post/api/nodes/actions/restart-all
+    post/api/nodes/actions/reorder
+    post/api/nodes/bulk-actions/profile-modification
+    post/api/nodes/bulk-actions
+    post/api/nodes/bulk-actions/update
+
+Node Plugins Controller (Collapsed) ​
+Node Plugins Controller Operations
+
+    get/api/node-plugins/torrent-blocker
+    get/api/node-plugins/torrent-blocker/stats
+    delete/api/node-plugins/torrent-blocker/truncate
+    get/api/node-plugins
+    patch/api/node-plugins
+    post/api/node-plugins
+    get/api/node-plugins/{uuid}
+    delete/api/node-plugins/{uuid}
+    post/api/node-plugins/actions/reorder
+    post/api/node-plugins/actions/clone
+    post/api/node-plugins/executor
+
+Bandwidth Stats Controller (Collapsed) ​
+Bandwidth Stats Controller Operations
+
+    get/api/bandwidth-stats/internal-squads/{uuid}/usage
+    get/api/bandwidth-stats/internal-squads/{squadUuid}/users/{userId}/usage
+    post/api/bandwidth-stats/nodes/usage
+    get/api/bandwidth-stats/nodes/{uuid}/users
+    post/api/bandwidth-stats/nodes/users
+    get/api/bandwidth-stats/users/{userId}
+    get/api/bandwidth-stats/nodes
+
+Connections Controller (Collapsed) ​
+
+Management of connections by user and node.
+Connections Controller Operations
+
+    post/api/connections/by-user/{userId}
+    get/api/connections/by-user/{jobId}
+    post/api/connections/drop
+    post/api/connections/by-node/{nodeUuid}
+    get/api/connections/by-node/{jobId}
+
+Config Profiles Controller (Collapsed) ​
+
+Management of Config Profiles.
+Config Profiles Controller Operations
+
+    get/api/config-profiles
+    post/api/config-profiles
+    patch/api/config-profiles
+    get/api/config-profiles/inbounds
+    get/api/config-profiles/{uuid}/inbounds
+    get/api/config-profiles/{uuid}
+    delete/api/config-profiles/{uuid}
+    get/api/config-profiles/{uuid}/computed-config
+    post/api/config-profiles/actions/reorder
+
+Internal Squads Controller (Collapsed) ​
+
+Management of Internal Squads.
+Internal Squads Controller Operations
+
+    get/api/internal-squads
+    post/api/internal-squads
+    patch/api/internal-squads
+    get/api/internal-squads/{uuid}
+    delete/api/internal-squads/{uuid}
+    get/api/internal-squads/{uuid}/accessible-nodes
+    get/api/internal-squads/{uuid}/usage
+    post/api/internal-squads/{uuid}/bulk-actions/add-users
+    delete/api/internal-squads/{uuid}/bulk-actions/remove-users
+    post/api/internal-squads/actions/reorder
+    post/api/internal-squads/{uuid}/bulk-actions/add-many-users
+    delete/api/internal-squads/{uuid}/bulk-actions/remove-many-users
+
+External Squads Controller (Collapsed) ​
+
+Management of External Squads.
+External Squads Controller Operations
+
+    get/api/external-squads
+    post/api/external-squads
+    patch/api/external-squads
+    get/api/external-squads/{uuid}
+    delete/api/external-squads/{uuid}
+    post/api/external-squads/{uuid}/bulk-actions/add-users
+    delete/api/external-squads/{uuid}/bulk-actions/remove-users
+    post/api/external-squads/actions/reorder
+
+Hosts Controller (Collapsed) ​
+Hosts Controller Operations
+
+    get/api/hosts/tags
+    post/api/hosts
+    patch/api/hosts
+    get/api/hosts
+    get/api/hosts/{uuid}
+    delete/api/hosts/{uuid}
+    post/api/hosts/actions/reorder
+
+Hosts Bulk Actions Controller (Collapsed) ​
+Hosts Bulk Actions Controller Operations
+
+    post/api/hosts/bulk/delete
+    post/api/hosts/bulk/disable
+    post/api/hosts/bulk/enable
+    patch/api/hosts/bulk/update
+
+Subscription Template Controller (Collapsed) ​
+Subscription Template Controller Operations
+
+    get/api/subscription-templates
+    patch/api/subscription-templates
+    post/api/subscription-templates
+    get/api/subscription-templates/{uuid}
+    delete/api/subscription-templates/{uuid}
+    post/api/subscription-templates/actions/reorder
+
+Subscription Settings Controller (Collapsed) ​
+Subscription Settings Controller Operations
+
+    get/api/subscription-settings
+    patch/api/subscription-settings
+
+Infra Billing Controller (Collapsed) ​
+Infra Billing Controller Operations
+
+    get/api/infra-billing/providers
+    post/api/infra-billing/providers
+    patch/api/infra-billing/providers
+    get/api/infra-billing/providers/{uuid}
+    delete/api/infra-billing/providers/{uuid}
+    post/api/infra-billing/history
+    get/api/infra-billing/history
+    delete/api/infra-billing/history/{uuid}
+    get/api/infra-billing/nodes
+    patch/api/infra-billing/nodes
+    post/api/infra-billing/nodes
+    delete/api/infra-billing/nodes/{uuid}
+
+System Controller (Collapsed) ​
+System Controller Operations
+
+    get/api/system/metadata
+    get/api/system/configuration
+    get/api/system/stats
+    get/api/system/stats/bandwidth
+    get/api/system/stats/nodes
+    get/api/system/health
+    get/api/system/nodes/metrics
+    get/api/system/tools/x25519/generate
+    post/api/system/testers/srr-matcher
+    get/api/system/stats/recap
+    get/api/system/stats/digest
+    get/api/system/stats/http
+
+Snippets Controller (Collapsed) ​
+Snippets Controller Operations
+
+    get/api/snippets
+    delete/api/snippets
+    post/api/snippets
+    patch/api/snippets
+    post/api/snippets/actions/sync
+
+Remnawave Settings Controller (Collapsed) ​
+Remnawave Settings Controller Operations
+
+    get/api/remnawave-settings
+    patch/api/remnawave-settings
+
+Subscription Page Configs Controller (Collapsed) ​
+Subscription Page Configs Controller Operations
+
+    get/api/subscription-page-configs
+    patch/api/subscription-page-configs
+    post/api/subscription-page-configs
+    get/api/subscription-page-configs/{uuid}
+    delete/api/subscription-page-configs/{uuid}
+    post/api/subscription-page-configs/actions/reorder
+    post/api/subscription-page-configs/actions/clone
+
+Metadata Controller (Collapsed) ​
+
+Manage arbitrary metadata for Users and Nodes.
+Metadata Controller Operations
+
+    get/api/metadata/user/{userId}
+    put/api/metadata/user/{userId}
+    get/api/metadata/node/{uuid}
+    put/api/metadata/node/{uuid}
+
+Auth Controller (Collapsed) ​
+
+Used to authenticate admin users.
+Auth Controller Operations
+
+    post/api/auth/login
+    post/api/auth/register
+    get/api/auth/status
+    post/api/auth/oauth2/authorize
+    post/api/auth/oauth2/callback
+    get/api/auth/passkey/authentication/options
+    post/api/auth/passkey/authentication/verify
+
+Passkeys Controller (Collapsed) ​
+
+Management of Passkeys.
+Passkeys Controller Operations
+
+    get/api/passkeys/registration/options
+    post/api/passkeys/registration/verify
+    get/api/passkeys
+    delete/api/passkeys
+    patch/api/passkeys
+
+API Tokens Controller (Collapsed) ​
+
+Manage API tokens to use in your code. This controller can't be used with API token, only with Admin JWT token
+API Tokens Controller Operations
+
+    post/api/tokens
+    get/api/tokens
+    delete/api/tokens/{uuid}
+    get/api/tokens/scopes
+
+Models
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
